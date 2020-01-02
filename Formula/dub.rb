@@ -20,7 +20,12 @@ class Dub < Formula
   def install
     ENV["GITVER"] = version.to_s
     system "./build.sh"
+    system "bin/dub scripts/man/gen_man.d"
+
     bin.install "bin/dub"
+    man1.install "scripts/man/dub*.1"
+    bash_completion.install "scripts/bash-completion/dub.bash"
+    fish_completion.install "scripts/fish-completion/dub.fish"
   end
 
   test do
