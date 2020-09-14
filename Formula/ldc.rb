@@ -19,7 +19,7 @@ class Ldc < Formula
 
   depends_on "cmake" => :build
   depends_on "libconfig" => :build
-  depends_on "llvm@9" # due to a bug in llvm 10 https://bugs.llvm.org/show_bug.cgi?id=47226
+  depends_on "llvm"
 
   uses_from_macos "libxml2" => :build
 
@@ -39,7 +39,7 @@ class Ldc < Formula
 
     mkdir "build" do
       args = std_cmake_args + %W[
-        -DLLVM_ROOT_DIR=#{Formula["llvm@9"].opt_prefix}
+        -DLLVM_ROOT_DIR=#{Formula["llvm"].opt_prefix}
         -DINCLUDE_INSTALL_DIR=#{include}/dlang/ldc
         -DD_COMPILER=#{buildpath}/ldc-bootstrap/bin/ldmd2
       ]
